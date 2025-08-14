@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Essência da Constituição - Resumo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <style>
         /* Estilos CSS para a área do direito */
         :root {
@@ -58,7 +60,6 @@
             margin-top: 40px;
         }
 
-        /* Estilo para links clicáveis (âncoras) */
         .toc ul {
             list-style: none;
             padding: 0;
@@ -74,10 +75,9 @@
         }
 
         .toc li a:hover {
-            color: #ff5722; /* Laranja para o hover */
+            color: #ff5722;
         }
 
-        /* Estilo para o Resumo */
         .resumo-secao {
             background-color: var(--cor-destaque);
             padding: 20px;
@@ -85,7 +85,6 @@
             margin-bottom: 20px;
         }
 
-        /* Estilo para o Mapa Mental */
         .mapa-mental {
             background-color: var(--cor-destaque);
             padding: 20px;
@@ -107,7 +106,6 @@
             padding-left: 20px;
         }
 
-        /* Estilo para as Questões */
         .questoes {
             background-color: var(--cor-destaque);
             padding: 20px;
@@ -149,14 +147,14 @@
         }
 
         .resposta-correta {
-            background-color: #d4edda; /* Verde claro */
+            background-color: #d4edda;
             color: #155724;
             padding: 5px;
             border-radius: 3px;
         }
 
         .resposta-errada {
-            background-color: #f8d7da; /* Vermelho claro */
+            background-color: #f8d7da;
             color: #721c24;
             padding: 5px;
             border-radius: 3px;
@@ -176,8 +174,21 @@
             transition: background-color 0.3s;
         }
 
-        button:hover {
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        button:hover:not(:disabled) {
             background-color: #002244;
+        }
+        
+        .cert-button {
+            background-color: #28a745;
+        }
+
+        .cert-button:hover {
+            background-color: #218838;
         }
 
         #resultado {
@@ -186,8 +197,30 @@
             font-weight: bold;
             text-align: center;
         }
-
-        /* Responsividade */
+        
+        /* Estilos para o certificado */
+        #certificado-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #certificado-box label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        #certificado-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -601,9 +634,15 @@
                     </div>
                 </div>
 
-                <button type="button" onclick="calcularResultado()">Verificar Respostas</button>
+                <button type="button" id="btn-verificar" onclick="calcularResultado()">Verificar Respostas</button>
 
                 <div id="resultado"></div>
+                
+                <div id="certificado-box">
+                    <label for="nome-usuario">Seu Nome Completo:</label>
+                    <input type="text" id="nome-usuario" placeholder="Digite seu nome para o certificado">
+                    <button type="button" class="cert-button" onclick="gerarCertificado()">Baixar Certificado</button>
+                </div>
 
                 <div id="gabarito-area">
                     <h3>Gabarito</h3>
@@ -615,76 +654,58 @@
 
     <script>
         const gabarito = {
-            q1: "a",
-            q2: "b",
-            q3: "b",
-            q4: "c",
-            q5: "b",
-            q6: "a",
-            q7: "a",
-            q8: "b",
-            q9: "a",
-            q10: "c",
-            q11: "c",
-            q12: "a",
-            q13: "c",
-            q14: "b",
-            q15: "b",
-            q16: "c",
-            q17: "a",
-            q18: "c",
-            q19: "b",
-            q20: "b",
-            q21: "c",
-            q22: "b",
-            q23: "b",
-            q24: "c",
-            q25: "b",
-            q26: "c",
-            q27: "c",
-            q28: "c",
-            q29: "b",
-            q30: "b"
+            q1: "a", q2: "b", q3: "b", q4: "c", q5: "b", q6: "a", q7: "a", q8: "b", q9: "a", q10: "c",
+            q11: "c", q12: "a", q13: "c", q14: "b", q15: "b", q16: "c", q17: "a", q18: "c", q19: "b", q20: "b",
+            q21: "c", q22: "b", q23: "b", q24: "c", q25: "b", q26: "c", q27: "c", q28: "c", q29: "b", q30: "b"
         };
         
         const respostasExtensas = {
-            q1: "A soma dos fatores reais de poder que regem a sociedade.",
-            q2: "Ilustrar que uma Constituição escrita sem o apoio dos poderes reais é ineficaz.",
-            q3: "A mídia jornalística.",
-            q4: "Deve ser a expressão dos fatores reais de poder.",
-            q5: "Um poder que reside na totalidade das forças sociais que regem o país.",
-            q6: "A valorização excessiva da Constituição escrita em detrimento da realidade do poder.",
-            q7: "Uma Constituição ineficaz.",
-            q8: "Formalizar e organizar as forças sociais já existentes.",
-            q9: "A jurídica é o documento formal, e a material é a essência real do poder.",
-            q10: "A correspondência com a realidade social.",
-            q11: "Político.",
-            q12: "Positivismo jurídico.",
-            q13: "Ela é derrubada ou ignorada, como uma 'folha de papel'.",
-            q14: "Um fator real de poder.",
-            q15: "É a base de todas as outras leis e não pode ser alterada facilmente.",
-            q16: "Focar na análise das forças sociais e políticas que moldam o Estado.",
-            q17: "A Constituição escrita que não corresponde à realidade do poder.",
-            q18: "O resultado dos fatores reais de poder.",
-            q19: "Um dos fatores reais de poder.",
-            q20: "Instabilidade política e ineficácia da lei.",
-            q21: "O formalismo jurídico.",
-            q22: "As forças sociais, políticas e econômicas que detêm o controle de fato.",
-            q23: "A essência da organização real do poder.",
-            q24: "Atuar como um dos fatores reais de poder que moldam a Constituição.",
-            q25: "Porque a força dos poderes reais pode subverter e ignorar a lei escrita.",
-            q26: "O Poder Constituinte pertence exclusivamente a um grupo de juristas.",
-            q27: "A eficácia e a durabilidade da Constituição na prática.",
-            q28: "Há um conflito entre o documento jurídico e a realidade política.",
-            q29: "Uma análise material e realista do direito constitucional.",
-            q30: "Para ser um reflexo escrito e formal da organização real do poder."
+            q1: "A soma dos fatores reais de poder que regem a sociedade.", q2: "Ilustrar que uma Constituição escrita sem o apoio dos poderes reais é ineficaz.", q3: "A mídia jornalística.", q4: "Deve ser a expressão dos fatores reais de poder.", q5: "Um poder que reside na totalidade das forças sociais que regem o país.",
+            q6: "A valorização excessiva da Constituição escrita em detrimento da realidade do poder.", q7: "Uma Constituição ineficaz.", q8: "Formalizar e organizar as forças sociais já existentes.", q9: "A jurídica é o documento formal, e a material é a essência real do poder.", q10: "A correspondência com a realidade social.",
+            q11: "Político.", q12: "Positivismo jurídico.", q13: "Ela é derrubada ou ignorada, como uma 'folha de papel'.", q14: "Um fator real de poder.", q15: "É a base de todas as outras leis e não pode ser alterada facilmente.",
+            q16: "Focar na análise das forças sociais e políticas que moldam o Estado.", q17: "A Constituição escrita que não corresponde à realidade do poder.", q18: "O resultado dos fatores reais de poder.", q19: "Um dos fatores reais de poder.", q20: "Instabilidade política e ineficácia da lei.",
+            q21: "O formalismo jurídico.", q22: "As forças sociais, políticas e econômicas que detêm o controle de fato.", q23: "A essência da organização real do poder.", q24: "Atuar como um dos fatores reais de poder que moldam a Constituição.", q25: "Porque a força dos poderes reais pode subverter e ignorar a lei escrita.",
+            q26: "O Poder Constituinte pertence exclusivamente a um grupo de juristas.", q27: "A eficácia e a durabilidade da Constituição na prática.", q28: "Há um conflito entre o documento jurídico e a realidade política.", q29: "Uma análise material e realista do direito constitucional.", q30: "Para ser um reflexo escrito e formal da organização real do poder."
         };
 
-        function calcularResultado() {
-            const formulario = document.getElementById("formulario-questoes");
-            const questoes = formulario.querySelectorAll(".questao");
+        const totalQuestoes = Object.keys(gabarito).length;
+        const btnVerificar = document.getElementById("btn-verificar");
+        const formulario = document.getElementById("formulario-questoes");
+
+        function verificarPreenchimento() {
+            let todasRespondidas = true;
+            for (let i = 1; i <= totalQuestoes; i++) {
+                const nomeQuestao = "q" + i;
+                const respostaSelecionada = document.querySelector(`input[name="${nomeQuestao}"]:checked`);
+                if (!respostaSelecionada) {
+                    todasRespondidas = false;
+                    break;
+                }
+            }
+            btnVerificar.disabled = !todasRespondidas;
+        }
+
+        formulario.addEventListener('change', verificarPreenchimento);
+        document.addEventListener('DOMContentLoaded', verificarPreenchimento);
+        
+        async function calcularResultado() {
+            // Verifica novamente se todas as questões foram respondidas
+            let todasRespondidas = true;
+            for (let i = 1; i <= totalQuestoes; i++) {
+                const nomeQuestao = "q" + i;
+                const respostaSelecionada = document.querySelector(`input[name="${nomeQuestao}"]:checked`);
+                if (!respostaSelecionada) {
+                    todasRespondidas = false;
+                    break;
+                }
+            }
+            if (!todasRespondidas) {
+                alert("Por favor, responda a todas as questões antes de verificar o resultado.");
+                return;
+            }
+
             let acertos = 0;
-            const totalQuestoes = Object.keys(gabarito).length;
+            const questoes = formulario.querySelectorAll(".questao");
             const gabaritoLista = document.getElementById("gabarito-lista");
             gabaritoLista.innerHTML = '';
             
@@ -700,9 +721,7 @@
                     opcao.style.fontWeight = 'normal';
                 });
 
-                let respostaUsuario = 'Não respondida';
                 if (respostaSelecionada) {
-                    respostaUsuario = respostaSelecionada.value;
                     if (respostaSelecionada.value === respostaCorreta) {
                         acertos++;
                         respostaSelecionada.parentElement.style.backgroundColor = '#d4edda';
@@ -724,13 +743,81 @@
             });
 
             const percentualAcertos = (acertos / totalQuestoes) * 100;
-            document.getElementById("resultado").innerHTML = `
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = `
                 <p>Você acertou <strong>${acertos}</strong> de <strong>${totalQuestoes}</strong> questões.</p>
                 <p>Seu percentual de acertos é de <strong>${percentualAcertos.toFixed(2)}%</strong>.</p>
             `;
             document.getElementById("gabarito-area").style.display = "block";
+            
+            if (percentualAcertos >= 60) {
+                document.getElementById("certificado-box").style.display = "block";
+            } else {
+                document.getElementById("certificado-box").style.display = "none";
+            }
+        }
+        
+        async function gerarCertificado() {
+            const nomeUsuario = document.getElementById('nome-usuario').value;
+            if (!nomeUsuario) {
+                alert("Por favor, digite seu nome completo para gerar o certificado.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Adicionando um fundo com cor e borda
+            doc.setFillColor(244, 244, 249);
+            doc.rect(0, 0, 297, 210, 'F');
+            doc.setDrawColor(0, 51, 102); // Cor primária
+            doc.setLineWidth(2);
+            doc.rect(5, 5, 287, 200, 'S');
+
+            // Título do Certificado
+            doc.setFont('times', 'bold');
+            doc.setFontSize(28);
+            doc.setTextColor(0, 51, 102); // Cor primária
+            doc.text('CERTIFICADO', 148.5, 30, { align: 'center' });
+            
+            // Corpo do Certificado
+            doc.setFont('times', 'normal');
+            doc.setFontSize(14);
+            doc.setTextColor(51, 51, 51);
+            doc.text('Certificamos que', 148.5, 50, { align: 'center' });
+            
+            doc.setFont('times', 'bold');
+            doc.setFontSize(22);
+            doc.text(nomeUsuario.toUpperCase(), 148.5, 65, { align: 'center' });
+            
+            doc.setFont('times', 'normal');
+            doc.setFontSize(14);
+            const dataAtual = new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
+            doc.text(`concluiu com êxito o teste de conhecimento sobre o livro`, 148.5, 80, { align: 'center' });
+            
+            doc.setFont('times', 'bolditalic');
+            doc.setFontSize(18);
+            doc.text(`"A Essência da Constituição"`, 148.5, 90, { align: 'center' });
+            doc.text(`de Ferdinand Lassalle`, 148.5, 100, { align: 'center' });
+            
+            doc.setFont('times', 'normal');
+            doc.setFontSize(14);
+            doc.text(`com aprovação de 5 horas complementares.`, 148.5, 120, { align: 'center' });
+            
+            // Assinaturas e Data
+            doc.setFont('times', 'normal');
+            doc.setFontSize(12);
+            doc.text(`________________________________`, 50, 160);
+            doc.text(`Assinatura do Responsável`, 50, 165);
+            doc.text(`Maceió, ${dataAtual}`, 148.5, 180, { align: 'center' });
+
+            // Salvar o PDF
+            doc.save(`certificado_${nomeUsuario.toLowerCase().replace(/ /g, '_')}.pdf`);
         }
     </script>
-
 </body>
 </html>
