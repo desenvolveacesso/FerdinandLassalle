@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Essência da Constituição - Resumo</title>
+    <style>
+        /* Estilos CSS para a área do direito */
+        :root {
+            --cor-primaria: #003366; /* Azul Marinho */
+            --cor-secundaria: #333333; /* Cinza Chumbo */
+            --cor-fundo: #f4f4f9; /* Cinza claro */
+            --cor-texto: #555555;
+            --cor-destaque: #e6e6f2; /* Azul claro para fundo de seções */
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 8px 8px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-style: italic;
+        }
+
+        h2, h3 {
+            color: var(--cor-secundaria);
+            border-bottom: 2px solid var(--cor-primaria);
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        /* Estilo para links clicáveis (âncoras) */
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li a {
+            text-decoration: none;
+            color: var(--cor-primaria);
+            font-weight: bold;
+            display: block;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+
+        .toc li a:hover {
+            color: #ff5722; /* Laranja para o hover */
+        }
+
+        /* Estilo para o Resumo */
+        .resumo-secao {
+            background-color: var(--cor-destaque);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para o Mapa Mental */
+        .mapa-mental {
+            background-color: var(--cor-destaque);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .mapa-mental ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .mapa-mental li {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .mapa-mental ul ul {
+            border-left: 2px solid var(--cor-primaria);
+            padding-left: 20px;
+        }
+
+        /* Estilo para as Questões */
+        .questoes {
+            background-color: var(--cor-destaque);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .questao {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .questao p {
+            font-weight: bold;
+            color: var(--cor-secundaria);
+        }
+
+        .opcoes label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .opcoes label:hover {
+            background-color: #e9e9e9;
+        }
+
+        .opcoes input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        #gabarito-area {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .resposta-correta {
+            background-color: #d4edda; /* Verde claro */
+            color: #155724;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .resposta-errada {
+            background-color: #f8d7da; /* Vermelho claro */
+            color: #721c24;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #002244;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 10px;
+            }
+            header {
+                padding: 20px 10px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>A Essência da Constituição</h1>
+            <p>Resumo, Mapa Mental e Questões</p>
+        </header>
+
+        <section id="resumo-principal">
+            <h2>Resumo Elaborado de "A Essência da Constituição"</h2>
+            <nav class="toc">
+                <h3>Tópicos</h3>
+                <ul>
+                    <li><a href="#introducao">1. Introdução: O Que é uma Constituição?</a></li>
+                    <li><a href="#fatores-reais">2. Os Fatores Reais de Poder</a></li>
+                    <li><a href="#constituicao-escrita">3. Constituição Escrita e a Constituição Real</a></li>
+                    <li><a href="#poder-constituinte">4. O Poder Constituinte</a></li>
+                    <li><a href="#conceito-constituicao">5. Conceito e Classificação da Constituição</a></li>
+                    <li><a href="#garantias">6. As Garantias da Constituição</a></li>
+                </ul>
+            </nav>
+
+            <div class="resumo-secao">
+                <h3 id="introducao">1. Introdução: O Que é uma Constituição?</h3>
+                <p>Ferdinand Lassalle inicia sua obra com a famosa pergunta "O que é uma Constituição?", buscando ir além do conceito puramente jurídico. Ele argumenta que uma Constituição não é apenas um documento escrito ou um livro de leis, mas a soma de fatores reais de poder que regem a sociedade. Para Lassalle, uma Constituição só é verdadeira se estiver alinhada com a realidade social e política do país. Ele usa a metáfora da folha de papel para ilustrar que uma Constituição escrita sem o apoio dos poderes reais é apenas um pedaço de papel sem valor prático. A obra é uma crítica ao liberalismo jurídico formal e um convite a se pensar a política de forma mais realista e material.</p>
+            </div>
+
+            <div class="resumo-secao">
+                <h3 id="fatores-reais">2. Os Fatores Reais de Poder</h3>
+                <p>Este é o ponto central da tese de Lassalle. Os **fatores reais de poder** são as forças atuantes na sociedade que, na prática, definem a estrutura do Estado. Ele exemplifica com a monarquia, a aristocracia, a burguesia, o exército e a classe trabalhadora. A Constituição, para ele, é o reflexo do equilíbrio (ou desequilíbrio) entre essas forças. O documento escrito deve expressar esse balanço de poder para ser eficaz. Se o texto constitucional não corresponder à realidade desses fatores, ele se torna ineficaz e pode ser facilmente subvertido ou ignorado.</p>
+            </div>
+
+            <div class="resumo-secao">
+                <h3 id="constituicao-escrita">3. Constituição Escrita e a Constituição Real</h3>
+                <p>Lassalle estabelece uma clara distinção entre a **Constituição real** (a soma dos fatores de poder) e a **Constituição escrita** (o documento jurídico). A real é a essência, a alma da nação; a escrita é apenas a forma. Ele defende que a Constituição escrita deve ser a "folha de papel" onde se inscrevem os fatores reais de poder. O fracasso de muitas Constituições, segundo Lassalle, está na tentativa de impor um texto que não reflete a realidade da balança de poder. A Constituição escrita é um instrumento para consolidar e formalizar a estrutura de poder existente, não para criá-la do zero de forma artificial.</p>
+            </div>
+
+            <div class="resumo-secao">
+                <h3 id="poder-constituinte">4. O Poder Constituinte</h3>
+                <p>Para Lassalle, o poder de fazer a Constituição (o **Poder Constituinte**) não reside em um corpo eleito ou em um monarca, mas na sociedade como um todo, naqueles fatores reais de poder. A assembleia constituinte não cria a Constituição do nada; ela apenas organiza e formaliza as forças sociais já existentes. O verdadeiro poder de mudar a ordem constitucional está nas mãos das classes e instituições que detêm a força real na sociedade, e não no texto de uma lei.</p>
+            </div>
+
+            <div class="resumo-secao">
+                <h3 id="conceito-constituicao">5. Conceito e Classificação da Constituição</h3>
+                <p>Lassalle propõe uma nova classificação. A **Constituição jurídica** é o documento formal, a lei. A **Constituição material** é a essência, a organização real do poder. Ele argumenta que o estudo do direito constitucional deve se concentrar na Constituição material, ou seja, na análise das forças sociais e políticas que de fato moldam o Estado, e não apenas na interpretação das normas escritas. Para ele, uma constituição é uma "lei fundamental" quando as leis nela contidas são tão fundamentais que se tornam a base de todas as outras leis, e não podem ser alteradas sem uma mudança drástica no próprio sistema de poder.</p>
+            </div>
+
+            <div class="resumo-secao">
+                <h3 id="garantias">6. As Garantias da Constituição</h3>
+                <p>Por fim, Lassalle discute as garantias da Constituição. Ele questiona a eficácia de garantias puramente jurídicas (como a revisão judicial ou a rigidez constitucional) se não houver um alinhamento com os fatores reais de poder. Para ele, a única garantia verdadeira de uma Constituição é a sua correspondência com a realidade social. Se uma Constituição reflete fielmente o equilíbrio de poder, as próprias forças que a sustentam se encarregarão de defendê-la. Se ela é apenas uma ficção, nenhuma garantia jurídica será suficiente para protegê-la. A defesa da Constituição, portanto, é um ato político, e não apenas jurídico.</p>
+            </div>
+        </section>
+
+        ---
+
+        <section id="mapa-mental-secao">
+            <h2>Mapa Mental</h2>
+            <div class="mapa-mental">
+                <ul>
+                    <li><strong>A Essência da Constituição</strong>
+                        <ul>
+                            <li><strong>Conceito de Constituição</strong>
+                                <ul>
+                                    <li>Constituição Real (Essência)</li>
+                                    <li>Constituição Escrita (Folha de Papel)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Fatores Reais de Poder</strong>
+                                <ul>
+                                    <li>Monarquia</li>
+                                    <li>Aristocracia (Nobreza)</li>
+                                    <li>Burguesia</li>
+                                    <li>Exército</li>
+                                    <li>Proletariado (Massa Popular)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Poder Constituinte</strong>
+                                <ul>
+                                    <li>Não é um documento, mas as forças sociais que o criam.</li>
+                                    <li>A Assembleia Constituinte apenas formaliza o poder real.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Garantias da Constituição</strong>
+                                <ul>
+                                    <li>Não são apenas jurídicas.</li>
+                                    <li>A única garantia verdadeira é a correspondência entre o texto e os fatores reais de poder.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        ---
+
+        <section id="questoes-secao">
+            <h2>30 Questões de Múltipla Escolha</h2>
+            <form id="formulario-questoes" class="questoes">
+                <div class="questao" id="q1">
+                    <p>1. Segundo Lassalle, o que é a Constituição Real?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q1" value="a"> A soma dos fatores reais de poder que regem a sociedade.</label>
+                        <label><input type="radio" name="q1" value="b"> Um documento escrito que estabelece as leis fundamentais do país.</label>
+                        <label><input type="radio" name="q1" value="c"> O conjunto de normas jurídicas que organizam o Estado.</label>
+                        <label><input type="radio" name="q1" value="d"> A vontade do povo expressa através de plebiscito.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q2">
+                    <p>2. A metáfora da "folha de papel" é usada por Lassalle para:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q2" value="a"> Descrever a fragilidade das garantias jurídicas.</label>
+                        <label><input type="radio" name="q2" value="b"> Ilustrar que uma Constituição escrita sem o apoio dos poderes reais é ineficaz.</label>
+                        <label><input type="radio" name="q2" value="c"> Representar a importância de uma Constituição flexível.</label>
+                        <label><input type="radio" name="q2" value="d"> Simbolizar a pureza e a objetividade do texto constitucional.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q3">
+                    <p>3. Qual das seguintes opções não é considerada um "fator real de poder" por Lassalle?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q3" value="a"> A Monarquia.</label>
+                        <label><input type="radio" name="q3" value="b"> A mídia jornalística.</label>
+                        <label><input type="radio" name="q3" value="c"> O Exército.</label>
+                        <label><input type="radio" name="q3" value="d"> A classe trabalhadora.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q4">
+                    <p>4. Segundo o autor, a Constituição escrita:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q4" value="a"> Deve criar os fatores reais de poder.</label>
+                        <label><input type="radio" name="q4" value="b"> É a única forma válida de Constituição.</label>
+                        <label><input type="radio" name="q4" value="c"> Deve ser a expressão dos fatores reais de poder.</label>
+                        <label><input type="radio" name="q4" value="d"> Possui autonomia total em relação à Constituição real.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q5">
+                    <p>5. O Poder Constituinte, para Lassalle, é:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q5" value="a"> O poder de um corpo eleito para criar uma nova Constituição.</label>
+                        <label><input type="radio" name="q5" value="b"> Um poder que reside na totalidade das forças sociais que regem o país.</label>
+                        <label><input type="radio" name="q5" value="c"> A capacidade do Poder Judiciário de interpretar a Constituição.</label>
+                        <label><input type="radio" name="q5" value="d"> A vontade do monarca ou do chefe de Estado.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q6">
+                    <p>6. Qual a principal crítica de Lassalle ao liberalismo jurídico formal?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q6" value="a"> A valorização excessiva da Constituição escrita em detrimento da realidade do poder.</label>
+                        <label><input type="radio" name="q6" value="b"> O foco em direitos individuais em vez de direitos coletivos.</label>
+                        <label><input type="radio" name="q6" value="c"> A ausência de um poder constituinte popular.</label>
+                        <label><input type="radio" name="q6" value="d"> O desprezo pela monarquia como fator de poder.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q7">
+                    <p>7. Segundo a teoria de Lassalle, uma Constituição escrita que não corresponde à Constituição real é:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q7" value="a"> Uma Constituição ineficaz.</label>
+                        <label><input type="radio" name="q7" value="b"> Um modelo ideal a ser alcançado.</label>
+                        <label><input type="radio" name="q7" value="c"> Uma norma suprema e inalterável.</label>
+                        <label><input type="radio" name="q7" value="d"> Um instrumento de proteção total das minorias.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q8">
+                    <p>8. Qual a função da Assembleia Constituinte, de acordo com Lassalle?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q8" value="a"> Criar os fatores reais de poder.</label>
+                        <label><input type="radio" name="q8" value="b"> Formalizar e organizar as forças sociais já existentes.</label>
+                        <label><input type="radio" name="q8" value="c"> Representar a vontade divina na elaboração da lei.</label>
+                        <label><input type="radio" name="q8" value="d"> Impor uma nova ordem social independentemente da realidade.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q9">
+                    <p>9. A principal diferença entre a Constituição jurídica e a Constituição material, para Lassalle, é:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q9" value="a"> A jurídica é o documento formal, e a material é a essência real do poder.</label>
+                        <label><input type="radio" name="q9" value="b"> A jurídica é flexível, enquanto a material é rígida.</label>
+                        <label><input type="radio" name="q9" value="c"> A jurídica é criada pelo povo, e a material pelo monarca.</label>
+                        <label><input type="radio" name="q9" value="d"> A jurídica é um conceito utópico, e a material é a realidade ideal.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q10">
+                    <p>10. Qual a única garantia verdadeira de uma Constituição, segundo o autor?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q10" value="a"> O Poder Judiciário.</label>
+                        <label><input type="radio" name="q10" value="b"> A rigidez constitucional.</label>
+                        <label><input type="radio" name="q10" value="c"> A correspondência com a realidade social.</label>
+                        <label><input type="radio" name="q10" value="d"> As Forças Armadas.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q11">
+                    <p>11. Lassalle defende que a defesa da Constituição é, acima de tudo, um ato:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q11" value="a"> Jurídico.</label>
+                        <label><input type="radio" name="q11" value="b"> Administrativo.</label>
+                        <label><input type="radio" name="q11" value="c"> Político.</label>
+                        <label><input type="radio" name="q11" value="d"> Econômico.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q12">
+                    <p>12. A tese de Lassalle é considerada uma crítica ao:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q12" value="a"> Positivismo jurídico.</label>
+                        <label><input type="radio" name="q12" value="b"> Naturalismo jurídico.</label>
+                        <label><input type="radio" name="q12" value="c"> Realismo jurídico.</label>
+                        <label><input type="radio" name="q12" value="d"> Jusracionalismo.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q13">
+                    <p>13. Segundo a obra, o que acontece com uma Constituição escrita quando ela se opõe aos fatores reais de poder?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q13" value="a"> Ela se torna mais forte e estável.</label>
+                        <label><input type="radio" name="q13" value="b"> Ela se torna uma lei fundamental inalterável.</label>
+                        <label><input type="radio" name="q13" value="c"> Ela é derrubada ou ignorada, como uma "folha de papel".</label>
+                        <label><input type="radio" name="q13" value="d"> Ela gera um novo poder constituinte.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q14">
+                    <p>14. A Monarquia é exemplificada por Lassalle como:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q14" value="a"> Uma forma de governo ideal.</label>
+                        <label><input type="radio" name="q14" value="b"> Um fator real de poder.</label>
+                        <label><input type="radio" name="q14" value="c"> Uma garantia da Constituição.</label>
+                        <label><input type="radio" name="q14" value="d"> A Constituição Real.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q15">
+                    <p>15. Para Lassalle, uma Constituição é uma "lei fundamental" quando:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q15" value="a"> É o resultado de um referendo popular.</label>
+                        <label><input type="radio" name="q15" value="b"> É a base de todas as outras leis e não pode ser alterada facilmente.</label>
+                        <label><input type="radio" name="q15" value="c"> É elaborada por uma Assembleia Constituinte.</label>
+                        <label><input type="radio" name="q15" value="d"> Apenas o poder judiciário pode alterá-la.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q16">
+                    <p>16. Qual o papel do estudo do direito constitucional, segundo a visão materialista de Lassalle?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q16" value="a"> Analisar apenas as normas escritas.</label>
+                        <label><input type="radio" name="q16" value="b"> Interpretar as leis de acordo com o poder constituinte.</label>
+                        <label><input type="radio" name="q16" value="c"> Focar na análise das forças sociais e políticas que moldam o Estado.</label>
+                        <label><input type="radio" name="q16" value="d"> Defender a rigidez constitucional.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q17">
+                    <p>17. O que Lassalle entende por "folha de papel" no contexto da Constituição?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q17" value="a"> A Constituição escrita que não corresponde à realidade do poder.</label>
+                        <label><input type="radio" name="q17" value="b"> Um documento que simboliza a pureza do direito.</label>
+                        <label><input type="radio" name="q17" value="c"> A forma ideal de uma Constituição.</label>
+                        <label><input type="radio" name="q17" value="d"> Uma garantia de estabilidade política.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q18">
+                    <p>18. A principal ideia de Lassalle é que a Constituição é:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q18" value="a"> Um documento jurídico. </label>
+                        <label><input type="radio" name="q18" value="b"> A soma das leis do país. </label>
+                        <label><input type="radio" name="q18" value="c"> O resultado dos fatores reais de poder. </label>
+                        <label><input type="radio" name="q18" value="d"> Uma criação da vontade popular.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q19">
+                    <p>19. O que é a burguesia, no contexto da obra de Lassalle?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q19" value="a"> Um grupo social sem influência política.</label>
+                        <label><input type="radio" name="q19" value="b"> Um dos fatores reais de poder.</label>
+                        <label><input type="radio" name="q19" value="c"> A única força legítima para criar a Constituição.</label>
+                        <label><input type="radio" name="q19" value="d"> Uma garantia de estabilidade jurídica.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q20">
+                    <p>20. Qual a consequência, segundo Lassalle, de uma Constituição escrita que não se alinha com a Constituição real?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q20" value="a"> Maior segurança jurídica.</label>
+                        <label><input type="radio" name="q20" value="b"> Instabilidade política e ineficácia da lei.</label>
+                        <label><input type="radio" name="q20" value="c"> Fortalecimento do Poder Judiciário.</label>
+                        <label><input type="radio" name="q20" value="d"> Maior participação popular.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q21">
+                    <p>21. A obra de Lassalle é considerada uma crítica a qual teoria constitucional?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q21" value="a"> A teoria kelseniana da norma fundamental.</label>
+                        <label><input type="radio" name="q21" value="b"> O constitucionalismo norte-americano.</label>
+                        <label><input type="radio" name="q21" value="c"> O formalismo jurídico.</label>
+                        <label><input type="radio" name="q21" value="d"> A teoria do poder moderador.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q22">
+                    <p>22. O que Lassalle entende por "poderes reais" em sua obra?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q22" value="a"> Os três poderes da República (Executivo, Legislativo e Judiciário).</label>
+                        <label><input type="radio" name="q22" value="b"> As forças sociais, políticas e econômicas que detêm o controle de fato.</label>
+                        <label><input type="radio" name="q22" value="c"> A capacidade de governar de forma autocrática.</label>
+                        <label><input type="radio" name="q22" value="d"> As garantias constitucionais de um sistema jurídico.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q23">
+                    <p>23. A Constituição Material, para Lassalle, é:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q23" value="a"> O documento escrito.</label>
+                        <label><input type="radio" name="q23" value="b"> A essência da organização real do poder.</label>
+                        <label><input type="radio" name="q23" value="c"> O conjunto de leis infraconstitucionais.</label>
+                        <label><input type="radio" name="q23" value="d"> Um conceito ideal de governo.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q24">
+                    <p>24. Qual o papel do exército, segundo a teoria dos fatores de poder de Lassalle?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q24" value="a"> Manter a ordem social.</label>
+                        <label><input type="radio" name="q24" value="b"> Proteger a Constituição escrita.</label>
+                        <label><input type="radio" name="q24" value="c"> Atuar como um dos fatores reais de poder que moldam a Constituição.</label>
+                        <label><input type="radio" name="q24" value="d"> Ser o único poder constituinte.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q25">
+                    <p>25. Por que Lassalle argumenta que uma Constituição escrita sem o apoio dos poderes reais é um "pedaço de papel sem valor prático"?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q25" value="a"> Porque as leis só têm valor se forem antigas.</label>
+                        <label><input type="radio" name="q25" value="b"> Porque a força dos poderes reais pode subverter e ignorar a lei escrita.</label>
+                        <label><input type="radio" name="q25" value="c"> Porque o povo não consegue entender o texto.</label>
+                        <label><input type="radio" name="q25" value="d"> Porque ela não reflete a moralidade da sociedade.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q26">
+                    <p>26. A visão de Lassalle sobre o Poder Constituinte se contrapõe à ideia de que:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q26" value="a"> O Poder Constituinte é um poder de fato.</label>
+                        <label><input type="radio" name="q26" value="b"> A Constituição é um reflexo das forças sociais.</label>
+                        <label><input type="radio" name="q26" value="c"> O Poder Constituinte pertence exclusivamente a um grupo de juristas.</label>
+                        <label><input type="radio" name="q26" value="d"> A Constituição real é a essência do Estado.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q27">
+                    <p>27. Qual a principal preocupação de Lassalle em sua obra?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q27" value="a"> A forma estética do texto constitucional.</label>
+                        <label><input type="radio" name="q27" value="b"> A aplicação da filosofia grega na política.</label>
+                        <label><input type="radio" name="q27" value="c"> A eficácia e a durabilidade da Constituição na prática.</label>
+                        <label><input type="radio" name="q27" value="d"> A proteção dos direitos individuais acima de tudo.</label>
+                    </div>
+                </div>
+                
+                <div class="questao" id="q28">
+                    <p>28. O que acontece quando a Constituição escrita não consegue formalizar a Constituição real?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q28" value="a"> O Judiciário ganha mais poder.</label>
+                        <label><input type="radio" name="q28" value="b"> A Constituição se torna um instrumento forte e estável.</label>
+                        <label><input type="radio" name="q28" value="c"> Há um conflito entre o documento jurídico e a realidade política.</label>
+                        <label><input type="radio" name="q28" value="d"> O povo se torna totalmente soberano.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q29">
+                    <p>29. Em "A Essência da Constituição", Lassalle critica o idealismo jurídico e defende:</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q29" value="a"> Uma abordagem puramente formalista.</label>
+                        <label><input type="radio" name="q29" value="b"> Uma análise material e realista do direito constitucional.</label>
+                        <label><input type="radio" name="q29" value="c"> A supremacia do poder judiciário.</label>
+                        <label><input type="radio" name="q29" value="d"> O estudo da Constituição como um texto sagrado.</label>
+                    </div>
+                </div>
+
+                <div class="questao" id="q30">
+                    <p>30. Qual o principal argumento de Lassalle para a existência de uma Constituição?</p>
+                    <div class="opcoes">
+                        <label><input type="radio" name="q30" value="a"> Para garantir a ordem social e proteger os direitos individuais.</label>
+                        <label><input type="radio" name="q30" value="b"> Para ser um reflexo escrito e formal da organização real do poder.</label>
+                        <label><input type="radio" name="q30" value="c"> Para legitimar a monarquia como poder central.</label>
+                        <label><input type="radio" name="q30" value="d"> Para criar uma utopia política e social.</label>
+                    </div>
+                </div>
+
+                <button type="button" onclick="calcularResultado()">Verificar Respostas</button>
+
+                <div id="resultado"></div>
+
+                <div id="gabarito-area">
+                    <h3>Gabarito</h3>
+                    <div id="gabarito-lista"></div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        const gabarito = {
+            q1: "a",
+            q2: "b",
+            q3: "b",
+            q4: "c",
+            q5: "b",
+            q6: "a",
+            q7: "a",
+            q8: "b",
+            q9: "a",
+            q10: "c",
+            q11: "c",
+            q12: "a",
+            q13: "c",
+            q14: "b",
+            q15: "b",
+            q16: "c",
+            q17: "a",
+            q18: "c",
+            q19: "b",
+            q20: "b",
+            q21: "c",
+            q22: "b",
+            q23: "b",
+            q24: "c",
+            q25: "b",
+            q26: "c",
+            q27: "c",
+            q28: "c",
+            q29: "b",
+            q30: "b"
+        };
+        
+        const respostasExtensas = {
+            q1: "A soma dos fatores reais de poder que regem a sociedade.",
+            q2: "Ilustrar que uma Constituição escrita sem o apoio dos poderes reais é ineficaz.",
+            q3: "A mídia jornalística.",
+            q4: "Deve ser a expressão dos fatores reais de poder.",
+            q5: "Um poder que reside na totalidade das forças sociais que regem o país.",
+            q6: "A valorização excessiva da Constituição escrita em detrimento da realidade do poder.",
+            q7: "Uma Constituição ineficaz.",
+            q8: "Formalizar e organizar as forças sociais já existentes.",
+            q9: "A jurídica é o documento formal, e a material é a essência real do poder.",
+            q10: "A correspondência com a realidade social.",
+            q11: "Político.",
+            q12: "Positivismo jurídico.",
+            q13: "Ela é derrubada ou ignorada, como uma 'folha de papel'.",
+            q14: "Um fator real de poder.",
+            q15: "É a base de todas as outras leis e não pode ser alterada facilmente.",
+            q16: "Focar na análise das forças sociais e políticas que moldam o Estado.",
+            q17: "A Constituição escrita que não corresponde à realidade do poder.",
+            q18: "O resultado dos fatores reais de poder.",
+            q19: "Um dos fatores reais de poder.",
+            q20: "Instabilidade política e ineficácia da lei.",
+            q21: "O formalismo jurídico.",
+            q22: "As forças sociais, políticas e econômicas que detêm o controle de fato.",
+            q23: "A essência da organização real do poder.",
+            q24: "Atuar como um dos fatores reais de poder que moldam a Constituição.",
+            q25: "Porque a força dos poderes reais pode subverter e ignorar a lei escrita.",
+            q26: "O Poder Constituinte pertence exclusivamente a um grupo de juristas.",
+            q27: "A eficácia e a durabilidade da Constituição na prática.",
+            q28: "Há um conflito entre o documento jurídico e a realidade política.",
+            q29: "Uma análise material e realista do direito constitucional.",
+            q30: "Para ser um reflexo escrito e formal da organização real do poder."
+        };
+
+        function calcularResultado() {
+            const formulario = document.getElementById("formulario-questoes");
+            const questoes = formulario.querySelectorAll(".questao");
+            let acertos = 0;
+            const totalQuestoes = Object.keys(gabarito).length;
+            const gabaritoLista = document.getElementById("gabarito-lista");
+            gabaritoLista.innerHTML = '';
+            
+            questoes.forEach((questao, index) => {
+                const nomeQuestao = "q" + (index + 1);
+                const respostaCorreta = gabarito[nomeQuestao];
+                const respostaSelecionada = document.querySelector(`input[name="${nomeQuestao}"]:checked`);
+                
+                const opcoes = questao.querySelectorAll('.opcoes label');
+                opcoes.forEach(opcao => {
+                    opcao.style.backgroundColor = '';
+                    opcao.style.color = 'var(--cor-texto)';
+                    opcao.style.fontWeight = 'normal';
+                });
+
+                let respostaUsuario = 'Não respondida';
+                if (respostaSelecionada) {
+                    respostaUsuario = respostaSelecionada.value;
+                    if (respostaSelecionada.value === respostaCorreta) {
+                        acertos++;
+                        respostaSelecionada.parentElement.style.backgroundColor = '#d4edda';
+                        respostaSelecionada.parentElement.style.color = '#155724';
+                        respostaSelecionada.parentElement.style.fontWeight = 'bold';
+                    } else {
+                        respostaSelecionada.parentElement.style.backgroundColor = '#f8d7da';
+                        respostaSelecionada.parentElement.style.color = '#721c24';
+                        respostaSelecionada.parentElement.style.fontWeight = 'bold';
+                        
+                        const labelCorreta = document.querySelector(`label input[name="${nomeQuestao}"][value="${respostaCorreta}"]`).parentElement;
+                        labelCorreta.style.backgroundColor = '#d4edda';
+                        labelCorreta.style.color = '#155724';
+                        labelCorreta.style.fontWeight = 'bold';
+                    }
+                }
+                
+                gabaritoLista.innerHTML += `<p><strong>${index + 1}.</strong> Resposta correta: <strong>${respostaCorreta.toUpperCase()}</strong> - ${respostasExtensas[nomeQuestao]}</p>`;
+            });
+
+            const percentualAcertos = (acertos / totalQuestoes) * 100;
+            document.getElementById("resultado").innerHTML = `
+                <p>Você acertou <strong>${acertos}</strong> de <strong>${totalQuestoes}</strong> questões.</p>
+                <p>Seu percentual de acertos é de <strong>${percentualAcertos.toFixed(2)}%</strong>.</p>
+            `;
+            document.getElementById("gabarito-area").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
